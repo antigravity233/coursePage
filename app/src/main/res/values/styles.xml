@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- course_main_page styles -->
+
+	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/white</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+
+	<!-- Text Appearance Subtitle1 style -->
+	<style name="TextAppearance.Course.Subtitle1"
+		parent="TextAppearance.MaterialComponents.Subtitle1">
+		<item name="android:textSize">18sp</item>
+	</style>
+
+
+
+
+</resources>

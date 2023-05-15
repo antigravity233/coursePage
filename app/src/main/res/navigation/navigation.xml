@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/puzzle_main">
+
+    <fragment
+        android:id="@+id/puzzle_main"
+        android:name="com.example.coursepage.puzzle.Puzzle_main"
+        android:label="puzzle_main"
+        tools:layout="@layout/puzzle_main" >
+        <action
+            android:id="@+id/action_puzzle_main_to_easy_puzzle"
+            app:destination="@id/easy_puzzle" />
+        <action
+            android:id="@+id/action_puzzle_main_to_normal_puzzle"
+            app:destination="@id/normal_puzzle" />
+        <action
+            android:id="@+id/action_puzzle_main_to_hard_puzzle"
+            app:destination="@id/hard_puzzle" />
+    </fragment>
+    <fragment
+        android:id="@+id/easy_puzzle"
+        android:name="com.example.coursepage.puzzle.Puzzle_easy"
+        android:label="easy_puzzle"
+        tools:layout="@layout/puzzle_easy" >
+        <action
+            android:id="@+id/action_easy_puzzle_to_puzzle_main"
+            app:destination="@id/puzzle_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/normal_puzzle"
+        android:name="com.example.coursepage.puzzle.Puzzle_normal"
+        android:label="normal_puzzle"
+        tools:layout="@layout/puzzle_normal" >
+        <action
+            android:id="@+id/action_normal_puzzle_to_puzzle_main"
+            app:destination="@id/puzzle_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/hard_puzzle"
+        android:name="com.example.coursepage.puzzle.Puzzle_hard"
+        android:label="hard_puzzle"
+        tools:layout="@layout/puzzle_hard" >
+        <action
+            android:id="@+id/action_hard_puzzle_to_puzzle_main"
+            app:destination="@id/puzzle_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/course_1"
+        android:name="com.example.coursepage.course.Course_1"
+        android:label="Course_1"
+        tools:layout="@layout/course_1">
+        <action
+            android:id="@+id/action_course_1_to_course_main"
+            app:destination="@id/course_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/course_2"
+        android:name="com.example.coursepage.course.Course_2"
+        android:label="Course_2"
+        tools:layout="@layout/course_2">
+        <action
+            android:id="@+id/action_course_2_to_course_main"
+            app:destination="@id/course_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/course_3"
+        android:name="com.example.coursepage.course.Course_3"
+        android:label="Course_3"
+        tools:layout="@layout/course_3">
+        <action
+            android:id="@+id/action_course_3_to_course_main"
+            app:destination="@id/course_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/course_5"
+        android:name="com.example.coursepage.course.Course_5"
+        android:label="Course_5"
+        tools:layout="@layout/course_5">
+        <action
+            android:id="@+id/action_course_5_to_course_main"
+            app:destination="@id/course_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/course_4"
+        android:name="com.example.coursepage.course.Course_4"
+        android:label="Course_4"
+        tools:layout="@layout/course_4">
+        <action
+            android:id="@+id/action_course_4_to_course_main"
+            app:destination="@id/course_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/course_main"
+        android:name="com.example.coursepage.course.Course_main"
+        android:label="Course_main"
+        tools:layout="@layout/course_main">
+        <action
+            android:id="@+id/action_course_main_to_course_4"
+            app:destination="@id/course_4" />
+        <action
+            android:id="@+id/action_course_main_to_course_5"
+            app:destination="@id/course_5" />
+        <action
+            android:id="@+id/action_course_main_to_course_3"
+            app:destination="@id/course_3" />
+        <action
+            android:id="@+id/action_course_main_to_course_2"
+            app:destination="@id/course_2" />
+        <action
+            android:id="@+id/action_course_main_to_course_1"
+            app:destination="@id/course_1" />
+    </fragment>
+</navigation>
