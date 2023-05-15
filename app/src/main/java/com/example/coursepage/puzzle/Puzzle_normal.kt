@@ -131,17 +131,7 @@ class Puzzle_normal : Fragment() {
         }
 
         buildPuzzle()
-        Log.i("cube value1", binding.cube11.text.toString())
-        Log.i("cube value2", binding.cube13.text.toString())
-        Log.i("cube value3", binding.cube15.text.toString())
-        Log.i("cube value4", binding.cube31.text.toString())
-        Log.i("cube value5", binding.cube33.text.toString())
-        Log.i("cube value6", binding.cube35.text.toString())
-        Log.i("cube value7", binding.cube51.text.toString())
-        Log.i("cube value8", binding.cube53.text.toString())
-        Log.i("cube value9", binding.cube55.text.toString())
 
-        Log.i("cube score", viewModel.cube_score.toString())
 
         return binding.root
     }
@@ -219,6 +209,15 @@ class Puzzle_normal : Fragment() {
         updateCubeNumber()
         updateBlank()
         updateResult()
+        Log.i("cube value1", binding.cube11.text.toString())
+        Log.i("cube value2", binding.cube13.text.toString())
+        Log.i("cube value3", binding.cube15.text.toString())
+        Log.i("cube value4", binding.cube31.text.toString())
+        Log.i("cube value5", binding.cube33.text.toString())
+        Log.i("cube value6", binding.cube35.text.toString())
+        Log.i("cube value7", binding.cube51.text.toString())
+        Log.i("cube value8", binding.cube53.text.toString())
+        Log.i("cube value9", binding.cube55.text.toString())
     }
 
     fun updateCubeNumber(){

@@ -137,21 +137,21 @@
                 android:gravity="center" />
 
             <ImageView
-                android:id="@+id/cube_2_4"
+                android:id="@+id/cube_2_3"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/cube_background"
                 android:src="@drawable/minus_solid" />
 
             <ImageView
-                android:id="@+id/cube_2_5"
+                android:id="@+id/cube_2_4"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@color/black"
                 android:gravity="center" />
 
             <ImageView
-                android:id="@+id/cube_2_3"
+                android:id="@+id/cube_2_5"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/cube_background"

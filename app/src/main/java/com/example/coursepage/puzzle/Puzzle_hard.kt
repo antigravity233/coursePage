@@ -135,17 +135,6 @@ class Puzzle_hard : Fragment() {
         }
 
         buildPuzzle()
-        Log.i("cube value1", binding.cube11.text.toString())
-        Log.i("cube value2", binding.cube13.text.toString())
-        Log.i("cube value3", binding.cube15.text.toString())
-        Log.i("cube value4", binding.cube31.text.toString())
-        Log.i("cube value5", binding.cube33.text.toString())
-        Log.i("cube value6", binding.cube35.text.toString())
-        Log.i("cube value7", binding.cube51.text.toString())
-        Log.i("cube value8", binding.cube53.text.toString())
-        Log.i("cube value9", binding.cube55.text.toString())
-
-        Log.i("cube score", viewModel.cube_score.toString())
 
         return binding.root
     }
@@ -223,6 +212,15 @@ class Puzzle_hard : Fragment() {
         updateCubeNumber()
         updateBlank()
         updateResult()
+        Log.i("cube value1", binding.cube11.text.toString())
+        Log.i("cube value2", binding.cube13.text.toString())
+        Log.i("cube value3", binding.cube15.text.toString())
+        Log.i("cube value4", binding.cube31.text.toString())
+        Log.i("cube value5", binding.cube33.text.toString())
+        Log.i("cube value6", binding.cube35.text.toString())
+        Log.i("cube value7", binding.cube51.text.toString())
+        Log.i("cube value8", binding.cube53.text.toString())
+        Log.i("cube value9", binding.cube55.text.toString())
     }
 
     fun updateCubeNumber() {
@@ -238,12 +236,6 @@ class Puzzle_hard : Fragment() {
     }
 
     fun updateResult() {
-        Log.i("checkresult0", viewModel.cube_result[0].toString())
-        Log.i("checkresult1", viewModel.cube_result[1].toString())
-        Log.i("checkresult2", viewModel.cube_result[2].toString())
-        Log.i("checkresult3", viewModel.cube_result[3].toString())
-        Log.i("checkresult4", viewModel.cube_result[4].toString())
-        Log.i("checkresult5", viewModel.cube_result[5].toString())
         binding.cube17.text = viewModel.cube_result[0].toString()
         binding.cube37.text = viewModel.cube_result[1].toString()
         binding.cube57.text = viewModel.cube_result[2].toString()

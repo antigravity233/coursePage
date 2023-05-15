@@ -1,176 +1,114 @@
 package com.example.coursepage.puzzle
 
 import android.graphics.Color
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coursepage.R
 
 class PuzzleEasyViewModel : ViewModel() {
-
-    val cube_number: IntArray = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
-    val cube_operator_string: IntArray = intArrayOf(
-        R.drawable.plus_solid,
-        R.drawable.minus_solid
-    )
-
-
-
-    val cube_operator: IntArray = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
-    var cube_blank: IntArray = intArrayOf(
-        Color.WHITE,
-        Color.WHITE,
-        Color.WHITE,
-        Color.BLACK,
-        Color.BLACK,
-        Color.BLACK,
-        Color.BLACK,
-        Color.BLACK,
-        Color.BLACK)
+    private lateinit var cube_operator_string: MutableList<Int>
+    lateinit var cube_number: MutableList<Int>
+    lateinit var cube_operator: MutableList<Int>
+    lateinit var cube_result: MutableList<Int>
+    lateinit var cube_blank: MutableList<Int>
     var cube_score = 0
-
-    val cube_result: IntArray = intArrayOf(0,1, 2, 3, 4, 5)
 
     init {
         cube_score = 0
-        cube_blank.shuffle()
+        setCube()
     }
 
     fun setCube() {
+        cube_blank = mutableListOf(
+            Color.WHITE,
+            Color.WHITE,
+            Color.WHITE,
+            Color.BLACK,
+            Color.BLACK,
+            Color.BLACK,
+            Color.BLACK,
+            Color.BLACK,
+            Color.BLACK
+        )
+        cube_blank.shuffle()
+
+        cube_operator = mutableListOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+        cube_number = mutableListOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
+
+        cube_result = mutableListOf(0, 1, 2, 3, 4, 5)
+
+        cube_operator_string = mutableListOf(
+            R.drawable.plus_solid,
+            R.drawable.minus_solid
+        )
+
         for (i in 0..8) {
             cube_number[i] = (1..20).random()
         }
 
         for (i in 0..11) {
-            cube_operator[i] = cube_operator_string.random()
+            cube_operator_string.shuffle()
+            cube_operator[i] = cube_operator_string[0]
         }
-
         setAllresult()
-
     }
 
-    fun correct(){
+    fun correct() {
         cube_score++
     }
 
     fun setAllresult() {
 
-        setResult1()
-        setResult2()
-        setResult3()
-        setResult4()
-        setResult5()
-        setResult6()
+        cube_result[0] = setResult(
+            cube_operator[0], cube_operator[1], cube_number[0],
+            cube_number[1], cube_number[2]
+        )
+        cube_result[1] = setResult(
+            cube_operator[5], cube_operator[6], cube_number[3],
+            cube_number[4], cube_number[5]
+        )
+        cube_result[2] = setResult(
+            cube_operator[10], cube_operator[11], cube_number[6],
+            cube_number[7], cube_number[8]
+        )
+        cube_result[3] = setResult(
+            cube_operator[2], cube_operator[7], cube_number[0],
+            cube_number[3], cube_number[6]
+        )
+        cube_result[4] = setResult(
+            cube_operator[3], cube_operator[8], cube_number[1],
+            cube_number[4], cube_number[7]
+        )
+        cube_result[5] = setResult(
+            cube_operator[4], cube_operator[9], cube_number[2],
+            cube_number[5], cube_number[8]
+        )
+
     }
 
 
-    fun setResult1(){
-        if(cube_operator[0] == R.drawable.plus_solid &&
-            cube_operator[1] == R.drawable.plus_solid){
-            cube_result[0] = cube_number[0] + cube_number[1] + cube_number[2]
+    private fun setResult(con1: Int, con2: Int, num1: Int, num2: Int, num3: Int): Int {
+        var result = 0
+        if (con1 == R.drawable.plus_solid &&
+            con2 == R.drawable.plus_solid
+        ) {
+            result = num1 + num2 + num3
+        } else if (con1 == R.drawable.minus_solid &&
+            con2 == R.drawable.plus_solid
+        ) {
+            result = num1 - num2 + num3
+        } else if (con1 == R.drawable.plus_solid &&
+            con2 == R.drawable.minus_solid
+        ) {
+            result = num1 + num2 - num3
+        } else {
+            result = num1 - num2 - num3
         }
-        else if (cube_operator[0] == R.drawable.minus_solid &&
-            cube_operator[1] == R.drawable.plus_solid){
-            cube_result[0] = cube_number[0] - cube_number[1] + cube_number[2]
-        }
-        else if (cube_operator[0] == R.drawable.plus_solid &&
-            cube_operator[1] == R.drawable.minus_solid){
-            cube_result[0] = cube_number[0] + cube_number[1] - cube_number[2]
-        }
-        else {
-            cube_result[0] = cube_number[0] - cube_number[1] - cube_number[2]
-        }
+        return result
     }
-
-    fun setResult2(){
-        if(cube_operator[5] == R.drawable.plus_solid &&
-            cube_operator[6] == R.drawable.plus_solid){
-            cube_result[1] = cube_number[3] + cube_number[4] + cube_number[5]
-        }
-        else if (cube_operator[5] == R.drawable.minus_solid &&
-            cube_operator[6] == R.drawable.plus_solid){
-            cube_result[1] = cube_number[3] - cube_number[4] + cube_number[5]
-        }
-        else if (cube_operator[5] == R.drawable.plus_solid &&
-            cube_operator[6] == R.drawable.minus_solid){
-            cube_result[1] = cube_number[3] + cube_number[4] - cube_number[5]
-        }
-        else {
-            cube_result[1] = cube_number[3] - cube_number[4] - cube_number[5]
-        }
-    }
-
-    fun setResult3(){
-        if(cube_operator[10] == R.drawable.plus_solid &&
-            cube_operator[11] == R.drawable.plus_solid){
-            cube_result[2] = cube_number[6] + cube_number[7] + cube_number[8]
-        }
-        else if (cube_operator[10] == R.drawable.minus_solid &&
-            cube_operator[11] == R.drawable.plus_solid){
-            cube_result[2] = cube_number[6] - cube_number[7] + cube_number[8]
-        }
-        else if (cube_operator[10] == R.drawable.plus_solid &&
-            cube_operator[11] == R.drawable.minus_solid){
-            cube_result[2] = cube_number[6] + cube_number[7] - cube_number[8]
-        }
-        else {
-            cube_result[2] = cube_number[6] - cube_number[7] - cube_number[8]
-        }
-    }
-
-    fun setResult4(){
-        if(cube_operator[2] == R.drawable.plus_solid &&
-            cube_operator[7] == R.drawable.plus_solid){
-            cube_result[3] = cube_number[0] + cube_number[3] + cube_number[6]
-        }
-        else if (cube_operator[2] == R.drawable.minus_solid &&
-            cube_operator[7] == R.drawable.plus_solid){
-            cube_result[3] = cube_number[0] - cube_number[3] + cube_number[6]
-        }
-        else if (cube_operator[2] == R.drawable.plus_solid &&
-            cube_operator[7] == R.drawable.minus_solid){
-            cube_result[3] = cube_number[0] + cube_number[3] - cube_number[9]
-        }
-        else {
-            cube_result[3] = cube_number[0] - cube_number[3] - cube_number[6]
-        }
-    }
-
-    fun setResult5(){
-        if(cube_operator[3] == R.drawable.plus_solid &&
-            cube_operator[8] == R.drawable.plus_solid){
-            cube_result[4] = cube_number[1] + cube_number[4] + cube_number[7]
-        }
-        else if (cube_operator[3] == R.drawable.minus_solid &&
-            cube_operator[8] == R.drawable.plus_solid){
-            cube_result[4] = cube_number[1] - cube_number[4] + cube_number[7]
-        }
-        else if (cube_operator[3] == R.drawable.plus_solid &&
-            cube_operator[8] == R.drawable.minus_solid){
-            cube_result[4] = cube_number[1] + cube_number[4] - cube_number[7]
-        }
-        else {
-            cube_result[4] = cube_number[1] - cube_number[4] - cube_number[7]
-        }
-    }
-
-    fun setResult6(){
-        if(cube_operator[4] == R.drawable.plus_solid &&
-            cube_operator[9] == R.drawable.plus_solid){
-            cube_result[5] = cube_number[2] + cube_number[5] + cube_number[8]
-        }
-        else if (cube_operator[4] == R.drawable.minus_solid &&
-            cube_operator[9] == R.drawable.plus_solid){
-            cube_result[5] = cube_number[2] - cube_number[5] + cube_number[8]
-        }
-        else if (cube_operator[4] == R.drawable.plus_solid &&
-            cube_operator[9] == R.drawable.minus_solid){
-            cube_result[5] = cube_number[2] + cube_number[5] - cube_number[8]
-        }
-        else {
-            cube_result[5] = cube_number[2] - cube_number[5] - cube_number[8]
-        }
-    }
-
-
 }
+
+
+
